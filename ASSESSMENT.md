@@ -134,4 +134,10 @@ These are designed to be queueable for scalability.
   - Better delivery tracking  
   - Easier auditability  
 
+## Backups
+
+- Leveraging existing infrustructure using AWS backup policies to ensure data accuracy. I would reccomment keeping a complete clone of the production database in a separate region , these databases would be in complete sync ensuring data integrity.
+
+- Creating secondary instances on stand-by is an absolute must, this would ensure a seemless switch over should there be an incident in any region there will be continuity of service
+
   Transparenct Note: AI was used to clean up language
