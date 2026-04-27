@@ -23,6 +23,8 @@ class EmployeeFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'employee_number' => fake()->unique()->numerify('EMP###'),
+            'email' => fake()->unique()->safeEmail(),
+            'phone_number' => fake()->phoneNumber(),
         ];
     }
 }
