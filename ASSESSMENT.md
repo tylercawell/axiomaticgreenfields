@@ -1,107 +1,137 @@
-# Axiomatic Greenfields - Assessment Notes
+# Axiomatic Greenfields – Assessment Notes
 
-** Approach **
+## 🧠 Approach
 
-Focus Points:
+### Focus Areas
 
-- Clean Architecture
-- Data Integrity
-- User Isolation
-- Test-driven Validation
+- Clean Architecture  
+- Data Integrity  
+- User Isolation  
+- Test-Driven Validation  
 
+## 🏗 Architecture
 
-# Architecture
+The application follows a layered architecture to ensure separation of concerns and maintainability.
 
-The application follows a layered approach.
+### Controllers
+- Thin and minimal  
+- Responsible for request validation and response handling  
 
-Conteollers
-- Thin and mininalist
--  Responsible for request validation and response handling
+### Services
+- Core of the application (business logic)  
+- Responsible for:
+  - Commission note creation  
+  - Updates  
+  - Authorization rules  
+  - Cross-entity data validation  
 
-Services
-- Heart of the application (Core business logic)
-- Handles
-    -   Commission note creation
-    -   Updates
-    -   Authorizaton rules
-    -   Data validation through relationships
+### Models
+Domain entities include:
+- Company  
+- Branch  
+- Employee  
+- Commission Note  
 
-Models
-- Company
-- Branches
-- Employee
-- Commission Note
+### Jobs
+- Handles asynchronous processing  
+- Includes:
+  - SMS notifications  
+  - Email notifications  
 
-Jobs
-Asyncronous processing
-- Sms Notifications
-- Email Notifications
+## 🔐 Authorization
 
-# Authorisation
+Authorization is implemented using:
 
-Authorisation is enforced using Spatie Laravel Permissions and Service-level Checks
+- Spatie Laravel Permission  
+- Service-layer validation  
 
-Users can update their own commission notes, should a user have manage commision notes, all notes can be updated
+### Rules
 
-# Data Integrity
+- Users may update:
+  - Their own commission notes  
+  - OR any commission note if they have manage commission notes permission  
 
-Strict validation rules ensure:
-    - A branch must belong to a company
-    -  An employee must belong to a selected branch
+## 🔗 Data Integrity
 
-Preventing invalid relational data
+Strict validation rules enforce:
 
-# Seeding Strategy
+- A branch must belong to the selected company  
+- An employee must belong to the selected branch  
 
-Seeded data is designed to be simple within the context of the assignnment
+This prevents invalid relational data from being stored.
 
--   Realistic
--   Relationally Correct
--   Useful for testing UI and Logic
+## 📊 Seeding Strategy
 
-Includes:
-    - Companies
-    - Branches
-    - Employees
-    - Commission Notes
+Seeded data is designed to be:
 
-Fixed amounts have been allocated
+- Simple within the context of the assessment  
+- Relationally correct  
+- Useful for testing UI and logic  
 
-- 10,000.00
-- 20,000.00
+### Includes
 
-# Testing
+- Companies  
+- Branches  
+- Employees  
+- Commission Notes  
 
-Testing is implemented by PEST
+### Fixed Commission Amounts
 
-Coverage includes
+- 10,000.00  
+- 20,000.00  
+- 30,000.00  
+- 40,000.00  
 
-- Authorisation rules
-- CRUD operations
-- Service-layer logic
+## 🧪 Testing
 
-# Notifications
+Testing is implemented using Pest.
 
-When a commission note is created and SMS and E-Mail job are dispatched
+### Coverage Includes
 
-These are queable for scalability
+- Authorization rules  
+- CRUD operations  
+- Service-layer logic  
 
-# Assumptions
-- This is a simple production style application
-- External integrations are mocked, but production ready with valid credentials
-- Focus on backend correctness and structure
+## 📬 Notifications
 
-# Improvements
+When a commission note is created:
 
-- Security improvements would need to be made for production by:
- - Implementing Encryption across the DB fro sensitive information
- - Rotation of API keys for service provider
- - Official API documentation
- - Role Based authentication combined with permnissions, allowing roles to have multiple permissions, creating more flexibility and additional control over the application
+- An SMS notification job is dispatched  
+- An email notification is dispatched  
 
-- Complete Audits would need to be implemented for transparency and accountability
+These are designed to be queueable for scalability.
 
-- Basic reusable companents were created, however more detailed versions would be required to be able to strive for DNR (Do Not Repeat)
+## ⚠️ Assumptions
 
-- Dashboards and Reporting would need to be implented saving users time
-- Improved UI (Current UI is Laravel Default based), Implementing a template based UI would be an efficient and effective way to improve user experience and focus on core functionality of the applications
+- This is a simplified production-style implementation  
+- External integrations are mocked but structured for real-world use  
+- Primary focus is backend correctness, structure, and scalability  
+
+## 🚀 Potential Improvements
+
+### 🔒 Security
+- Enforce two-factor authentication  
+- Encrypt sensitive data at rest  
+- Implement API key rotation strategies  
+- Introduce full audit logging for financial actions  
+
+### 🧩 Architecture
+- Introduce role-based grouping on top of permissions  
+- Expand reusable component architecture (DRY principles)  
+- Introduce DTOs or action classes for stricter data handling  
+
+### 📊 Features
+- Dashboards and reporting for better insights  
+- Activity logs and audit trails  
+
+### 🎨 UI/UX
+- Replace default Laravel UI with a structured design system (e.g. Metronic)  
+- Improve usability and workflow efficiency  
+
+### 📱 Communication
+- Replace SMS with WhatsApp integration:
+  - More cost-effective  
+  - Better delivery tracking  
+  - Easier auditability  
+
+  Transparenct Note: AI was used to clean up language
