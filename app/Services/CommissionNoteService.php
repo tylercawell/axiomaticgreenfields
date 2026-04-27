@@ -4,11 +4,16 @@ namespace App\Services;
 
 use DB;
 use Auth;
-use App\Models\Company;
-use App\Models\Branch;
-use App\Models\CommissionNote;
-use App\Models\Employee;
+
 use App\Models\User;
+use App\Models\Branch;
+use App\Models\Company;
+use App\Models\Employee;
+use App\Models\CommissionNote;
+
+use App\Jobs\CommissionNotes\AllocationNotification;
+use App\Jobs\CommissionNotes\AllcoationEmailNotification;
+
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 
@@ -46,6 +51,15 @@ class CommissionNoteService
             'amount' => $data['amount'],
             'note' => $data['note'] ?? null,
         ]);
+
+        // // Dispatch notification job
+        // $employee = Employee::find($data['employee_id']);
+        // $amount = $data['amount'];
+        // $note = $data['note'] ?? null;
+
+        // AllocationNotification::dispatch($employee, $amount, $note);
+        // AllocationEmailNotification::dispatch($employee, $amount, $note);
+
     }
 
     public function update(CommissionNote $commissionNote, array $data, User $user): CommissionNote
