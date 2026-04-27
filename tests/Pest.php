@@ -3,7 +3,12 @@
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-// uses(TestCase::class, RefreshDatabase::class)->in('Feature');
+
+uses (Tests\TestCase::class)
+    ->in('Feature', 'Unit');
+
+uses(RefreshDatabase::class)
+    ->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +21,9 @@ use Tests\TestCase;
 |
 */
 
-pest()->extend(TestCase::class)
- // ->use(RefreshDatabase::class)
-    ->in('Feature');
+// pest()->extend(TestCase::class)
+//  // ->use(RefreshDatabase::class)
+//     ->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
